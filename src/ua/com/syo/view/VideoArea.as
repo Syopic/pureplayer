@@ -77,9 +77,7 @@ package ua.com.syo.view {
         }
 		
 		private function metaDataHandler(infoObject:Object):void {
-		    //video.width = infoObject.width;
-		    //video.height = infoObject.height;
-		    video.y = Math.round(bg.height/2 - infoObject.height/2);
+		    video.y = Math.round(bg.height/2 - video.height/2);
 		}
 
 		
