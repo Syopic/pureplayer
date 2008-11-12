@@ -9,7 +9,7 @@ package ua.com.syo.view {
 
 	public class VideoArea {
 		
-		[Embed(source = "/../assets/controlLibrary.swf" , symbol = "VideoAreaBg")]
+		[Embed(source = "/../assets/library.swf" , symbol = "VideoAreaBg")]
 		private var VideoAreaBg:Class;
 		
 		private var bg:Sprite;
