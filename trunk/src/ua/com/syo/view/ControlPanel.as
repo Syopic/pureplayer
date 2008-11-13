@@ -19,10 +19,15 @@ package ua.com.syo.view {
 		[Embed(source = "/../assets/library.swf" , symbol = "VolumeButton")]
 		private var VolumeButton:Class;
 		
+		[Embed(source = "/../assets/library.swf" , symbol = "Scoreboard")]
+		private var Scoreboard:Class;
+		
 		private var playStopButton:MovieClip;
 		private var embedButton:MovieClip;
 		private var fullscreenButton:MovieClip;
 		private var volumeButton:MovieClip;
+		private var scoreboard:MovieClip;
+		private var progressBar:ProgressBar;
 		
 		public function ControlPanel() {
 			y = Globals.stageHeight - 40;
@@ -38,6 +43,12 @@ package ua.com.syo.view {
 			
 			volumeButton = new VolumeButton();
 			addChild(volumeButton);
+			
+			scoreboard = new Scoreboard();
+			addChild(scoreboard);
+			
+			progressBar = new ProgressBar();
+			addChild(progressBar);
 			
 			enableControls();
 			arrangeControls();
@@ -61,7 +72,7 @@ package ua.com.syo.view {
 			playStopButton.x = leftIndent;
 			playStopButton.y = 5;
 			
-			leftIndent += playStopButton.width + 5; 
+			leftIndent += playStopButton.width + 10; 
 			
 			embedButton.x = rightIndent - embedButton.width;
 			embedButton.y = 5;
@@ -78,6 +89,15 @@ package ua.com.syo.view {
 			volumeButton.y = 5;
 			
 			rightIndent = volumeButton.x - 5; 
+			
+			scoreboard.x = rightIndent - scoreboard.width;
+			scoreboard.y = 5;
+			
+			rightIndent = scoreboard.x - 5; 
+			
+			progressBar.x = leftIndent;
+			progressBar.y = 5;
+			progressBar.setWidth(rightIndent - leftIndent); 
 		}
 		
 		private function initButtonListeners(b:MovieClip):void {
