@@ -1,6 +1,8 @@
 package ua.com.syo.view {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	
+	import ua.com.syo.data.Globals;
 
 	public class UIManager extends Sprite {
 		
@@ -20,10 +22,8 @@ package ua.com.syo.view {
 		
 		public function init():void {
 			videoArea = new VideoArea(this);
-			var c:ControlPanel = new ControlPanel();
-			var cc:DisplayObject = addChild(c);
-			cc.x = 5;
-			cc.y = 305;
+			var controlPanel:ControlPanel = new ControlPanel();
+			addChild(controlPanel);
 		}
 		
 	}
