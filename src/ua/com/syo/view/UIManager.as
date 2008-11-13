@@ -19,10 +19,11 @@ package ua.com.syo.view {
 		}
 		
 		public var videoArea:VideoArea;
+		public var controlPanel:ControlPanel;
 		
 		public function init():void {
 			videoArea = new VideoArea(this);
-			var controlPanel:ControlPanel = new ControlPanel();
+			controlPanel = new ControlPanel();
 			addChild(controlPanel);
 		}
 		

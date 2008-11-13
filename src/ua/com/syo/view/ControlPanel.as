@@ -1,6 +1,7 @@
 package ua.com.syo.view {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
+	import flash.display.StageDisplayState;
 	import flash.events.MouseEvent;
 	
 	import ua.com.syo.data.Globals;
@@ -60,12 +61,17 @@ package ua.com.syo.view {
 			initButtonListeners(embedButton);
 			initButtonListeners(fullscreenButton);
 			initButtonListeners(volumeButton);
+			
+			fullscreenButton.addEventListener(MouseEvent.CLICK, function():void {
+				root.stage.displayState = StageDisplayState.FULL_SCREEN;
+				});
 		}
 		
 		private var leftIndent:Number;
 		private var rightIndent:Number;
 		
 		public function arrangeControls():void {
+			
 			leftIndent = 5;
 			rightIndent = Globals.stageWidth - 5;
 			

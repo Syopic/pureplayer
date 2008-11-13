@@ -66,7 +66,7 @@ package ua.com.syo.view {
             
             stream.client = customClient;
 			
-            //stream.play(videoURL);
+            stream.play(videoURL);
             container.addChild(video);
         }
 
@@ -79,6 +79,7 @@ package ua.com.syo.view {
         }
 		
 		private function metaDataHandler(infoObject:Object):void {
+		   	video.height = Math.round(video.width/infoObject.width)*infoObject.height; 
 		    video.y = Math.round(bg.height/2 - video.height/2);
 		}
 
