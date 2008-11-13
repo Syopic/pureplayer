@@ -6,6 +6,8 @@ package ua.com.syo.view {
 	import flash.media.Video;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
+	
+	import ua.com.syo.data.Globals;
 
 	public class VideoArea {
 		
@@ -31,9 +33,9 @@ package ua.com.syo.view {
             connection.connect(null);
 		}
 		
-		public function setSize(w:Number, h:Number):void {
-			bg.width = video.width = w;
-			bg.height = h;
+		public function setSize():void {
+			bg.width = video.width = Globals.stageWidth;
+			bg.height = Globals.stageHeight - 40;
 		}
 		
 		private var videoURL:String = "../assets/video.flv";
@@ -63,8 +65,8 @@ package ua.com.syo.view {
             video.attachNetStream(stream);
             
             stream.client = customClient;
-
-            stream.play(videoURL);
+			
+            //stream.play(videoURL);
             container.addChild(video);
         }
 

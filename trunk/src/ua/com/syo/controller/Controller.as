@@ -19,11 +19,11 @@ package ua.com.syo.controller {
 		
 		private var videoArea:VideoArea; 
 		
-		public function init(w:Number, h:Number):void {
+		public function init():void {
 			UIManager.instance.init();
 			videoArea = UIManager.instance.videoArea;
 			
-			videoArea.setSize(w, h - 40);
+			videoArea.setSize();
 		}
 	}
 }
