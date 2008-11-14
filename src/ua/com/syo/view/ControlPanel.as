@@ -28,7 +28,7 @@ package ua.com.syo.view {
 		private var fullscreenButton:MovieClip;
 		private var volumeButton:MovieClip;
 		private var scoreboard:MovieClip;
-		private var progressBar:ProgressBar;
+		public var progressBar:ProgressBar;
 		
 		public function ControlPanel() {
 			y = Globals.stageHeight - 40;
