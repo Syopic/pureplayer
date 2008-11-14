@@ -27,5 +27,9 @@ package ua.com.syo.view {
 			addChild(controlPanel);
 		}
 		
+		public function updateSlider():void {
+			
+		}
+		
 	}
 }

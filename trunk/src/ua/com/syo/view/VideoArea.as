@@ -1,6 +1,7 @@
 package ua.com.syo.view {
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;
+	import flash.events.Event;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.media.Video;
@@ -65,10 +66,18 @@ package ua.com.syo.view {
             video.attachNetStream(stream);
             
             stream.client = customClient;
+            video.addEventListener(Event.ENTER_FRAME, testListener);
+            
 			
             stream.play(videoURL);
             container.addChild(video);
         }
+        
+        private function testListener(event:Event):void {
+        	UIManager.instance.controlPanel.progressBar.setSliderPosition(stream.time, dur);
+        	//stream.bufferTime
+        }
+        
 
         private function securityErrorHandler(event:SecurityErrorEvent):void {
             trace("securityErrorHandler: " + event);
@@ -78,9 +87,14 @@ package ua.com.syo.view {
             trace(event.text);
         }
 		
+		private var dur:Number; 
 		private function metaDataHandler(infoObject:Object):void {
 		   	video.height = Math.round(video.width/infoObject.width)*infoObject.height; 
 		    video.y = Math.round(bg.height/2 - video.height/2);
+		    
+		    dur = infoObject.duration;
+		    
+		    trace("metadata: duration=" + infoObject.duration + " width=" + infoObject.width + " height=" + infoObject.height + " framerate=" + infoObject.framerate);
 		}
 
 		
