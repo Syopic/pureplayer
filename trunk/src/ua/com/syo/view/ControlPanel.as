@@ -3,6 +3,7 @@ package ua.com.syo.view {
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.events.MouseEvent;
+	import flash.text.TextField;
 	
 	import ua.com.syo.data.Globals;
 
@@ -30,6 +31,8 @@ package ua.com.syo.view {
 		private var scoreboard:MovieClip;
 		public var progressBar:ProgressBar;
 		
+		public var scoreTextField:TextField;
+		
 		public function ControlPanel() {
 			y = Globals.stageHeight - 40;
 			
@@ -47,6 +50,7 @@ package ua.com.syo.view {
 			
 			scoreboard = new Scoreboard();
 			addChild(scoreboard);
+			scoreTextField = scoreboard["scoreTextField"];
 			
 			progressBar = new ProgressBar();
 			addChild(progressBar);

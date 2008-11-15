@@ -13,6 +13,9 @@ package ua.com.syo.view {
 		private var barMc:MovieClip;
 		private var sliderMc:MovieClip;
 		private var bufferMc:MovieClip;
+		private var isMouseActive:Boolean = false;
+		private var duration:Number;
+		
 		
 		public function ProgressBar() {
 			progressBarMc = new PlayedBar();
@@ -26,16 +29,37 @@ package ua.com.syo.view {
 		private function initListeners():void {
 			sliderMc.addEventListener(MouseEvent.MOUSE_DOWN, function():void {
 				root.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+				isMouseActive = true;
+				UIManager.instance.videoArea.stop();
 			});
 			UIManager.instance.addEventListener(MouseEvent.MOUSE_UP, function():void {
-				root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+				if (isMouseActive) {
+					root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+					isMouseActive = false;
+					UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
+					UIManager.instance.videoArea.play();
+				}
+			});
+			
+			progressBarMc.addEventListener(MouseEvent.MOUSE_DOWN, function():void {
+				sliderMc.x = progressBarMc.mouseX; 
+				trace(barMc.mouseX);
+				UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 			});
 			
 		}
 		
-		public function setSliderPosition(bufferTime:Number, duration:Number):void {
-			sliderMc.y = sliderMc.height-2;
-			sliderMc.x = (barMc.width / duration) * bufferTime;
+		public function setSliderPosition(bufferTime:Number, _duration:Number):void {
+			duration = _duration;
+			if (!isMouseActive) {
+				sliderMc.y = sliderMc.height-2;
+				sliderMc.x = (barMc.width / duration) * bufferTime;
+			}
+			setBufferPosition();
+		}
+		
+		public function setBufferPosition():void {
+			bufferMc.width = sliderMc.x;
 		}
 		
 		private function sliderDrop():void {
@@ -47,6 +71,7 @@ package ua.com.syo.view {
 			pt = globalToLocal(pt);
 				
 			sliderMc.x = Math.min(Math.max(pt.x, 0), barMc.width);
+			UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 		}
 		
 		public function setWidth(value:Number):void {
