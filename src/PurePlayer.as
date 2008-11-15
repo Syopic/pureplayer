@@ -8,7 +8,7 @@ package {
 	import ua.com.syo.data.Globals;
 	import ua.com.syo.view.UIManager;
 	
-	[SWF(width = "400" , height = "300" , frameRate = "25", backgroundColor = "#000000" )]
+	[SWF(width = "800" , height = "650" , frameRate = "25", backgroundColor = "#000000" )]
 	
 	public class PurePlayer extends Sprite {
 		

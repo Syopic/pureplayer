@@ -36,10 +36,14 @@ package ua.com.syo.view {
 		
 		public function setSize():void {
 			bg.width = video.width = Globals.stageWidth;
-			bg.height = Globals.stageHeight - 40;
+			bg.height = video.height = Globals.stageHeight - 40;
 		}
 		
-		private var videoURL:String = "../assets/video.flv";
+		//private var videoURL:String = "../assets/video.flv";
+		//private var videoURL:String = "D:/Downloads/miniflvplayer/md.flv";
+		//private var videoURL:String = "D:/Downloads/player2/player2/video.flv";
+		//private var videoURL:String = "../assets/depeche.flv";
+		private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
 		
         private function netStatusHandler(event:NetStatusEvent):void {
             switch (event.info.code) {
@@ -75,8 +79,19 @@ package ua.com.syo.view {
         
         private function testListener(event:Event):void {
         	UIManager.instance.controlPanel.progressBar.setSliderPosition(stream.time, dur);
+        	UIManager.instance.controlPanel.scoreTextField.text = formatTime(stream.time) + " / " + formatTime(dur);
         	//stream.bufferTime
         }
+        
+        private function formatTime(value:Number):String {
+			value = Math.round(value);
+			var result:String = (value % 60).toString();
+	        if (result.length == 1)
+	            result = Math.floor(value / 60).toString() + ":0" + result;
+	        else 
+	            result = Math.floor(value / 60).toString() + ":" + result;
+	        return result;
+		}
         
 
         private function securityErrorHandler(event:SecurityErrorEvent):void {
@@ -89,12 +104,23 @@ package ua.com.syo.view {
 		
 		private var dur:Number; 
 		private function metaDataHandler(infoObject:Object):void {
-		   	video.height = Math.round(video.width/infoObject.width)*infoObject.height; 
+		   	//video.height = Math.round(bg.width/infoObject.width)*infoObject.height; 
 		    video.y = Math.round(bg.height/2 - video.height/2);
 		    
 		    dur = infoObject.duration;
 		    
 		    trace("metadata: duration=" + infoObject.duration + " width=" + infoObject.width + " height=" + infoObject.height + " framerate=" + infoObject.framerate);
+		}
+		
+		public function seekStream(offset:Number):void {
+			stream.seek(offset);
+		}
+		
+		public function stop():void{
+			stream.pause();
+		}
+		public function play():void{
+			stream.resume();
 		}
 
 		
