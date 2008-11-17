@@ -34,16 +34,16 @@ package ua.com.syo.view {
             connection.connect(null);
 		}
 		
-		public function setSize():void {
-			bg.width = video.width = Globals.stageWidth;
-			bg.height = video.height = Globals.stageHeight - 40;
+		public function setSize(w:Number, h:Number):void {
+			bg.width = video.width = w;
+			bg.height = video.height = h;
 		}
 		
 		//private var videoURL:String = "../assets/video.flv";
 		//private var videoURL:String = "D:/Downloads/miniflvplayer/md.flv";
 		//private var videoURL:String = "D:/Downloads/player2/player2/video.flv";
-		//private var videoURL:String = "../assets/depeche.flv";
-		private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
+		private var videoURL:String = "../assets/depeche.flv";
+		//private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
 		
         private function netStatusHandler(event:NetStatusEvent):void {
             switch (event.info.code) {
@@ -68,6 +68,7 @@ package ua.com.syo.view {
             
             video = new Video();
             video.attachNetStream(stream);
+            video.smoothing = true;
             
             stream.client = customClient;
             video.addEventListener(Event.ENTER_FRAME, testListener);
@@ -79,6 +80,7 @@ package ua.com.syo.view {
         
         private function testListener(event:Event):void {
         	UIManager.instance.controlPanel.progressBar.setSliderPosition(stream.time, dur);
+        	UIManager.instance.controlPanel.progressBar.setBufferPosition(stream.bytesLoaded, stream.bytesTotal);
         	UIManager.instance.controlPanel.scoreTextField.text = formatTime(stream.time) + " / " + formatTime(dur);
         	//stream.bufferTime
         }

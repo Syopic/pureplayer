@@ -55,11 +55,10 @@ package ua.com.syo.view {
 				sliderMc.y = sliderMc.height-2;
 				sliderMc.x = (barMc.width / duration) * bufferTime;
 			}
-			setBufferPosition();
 		}
 		
-		public function setBufferPosition():void {
-			bufferMc.width = sliderMc.x;
+		public function setBufferPosition(loaded:Number, total:Number):void {
+			bufferMc.width = (barMc.width / total) * loaded;
 		}
 		
 		private function sliderDrop():void {
