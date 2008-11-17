@@ -1,7 +1,8 @@
 package ua.com.syo.controller {
-	import ua.com.syo.view.UIManager;
-	import ua.com.syo.view.VideoArea;
+	import flash.events.Event;
 	
+	import ua.com.syo.model.Model;
+	import ua.com.syo.view.UIManager;
 	
 	public class Controller	{
 		
@@ -17,13 +18,15 @@ package ua.com.syo.controller {
 			return _instance;
 		}
 		
-		private var videoArea:VideoArea; 
-		
 		public function init():void {
 			UIManager.instance.init();
-			videoArea = UIManager.instance.videoArea;
-			
-			videoArea.setSize();
+			Model.instance.init();
+			Model.instance.addEventListener(Event.INIT, modelInitHandler);
+			//UIManager.instance.videoArea.setSize();
+		}
+		
+		private function modelInitHandler(event:Event):void {
+			UIManager.instance.showStartImage();
 		}
 	}
 }
