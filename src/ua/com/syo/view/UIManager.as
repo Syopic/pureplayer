@@ -4,6 +4,7 @@ package ua.com.syo.view {
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
+	import ua.com.syo.view.events.ControlEvent;
 
 	public class UIManager extends Sprite {
 		
@@ -27,6 +28,9 @@ package ua.com.syo.view {
 			videoArea = new VideoArea(this);
 			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - 40);
 			controlPanel = new ControlPanel();
+			
+			controlPanel.addEventListener(ControlEvent.CONTROL_ACTION, controlActionHandler);
+			
 			addChild(controlPanel);
 		}
 		
@@ -37,14 +41,25 @@ package ua.com.syo.view {
 			startImage.addEventListener(Event.ACTIVATE, bigPlayButtonClicked);
 		}
 		
+		private function controlActionHandler(event:ControlEvent):void {
+			if (event.actionType == "play") {
+				playVideo();
+			} else if (event.actionType == "pause") {
+				videoArea.stop();
+			}
+			
+		}
+		
 		private function bigPlayButtonClicked(event:Event):void {
 			playVideo();
+			controlPanel.playStopButton.gotoAndStop("pause");
 		}
 		
 		public function playVideo():void {
-			if (contains(startImage)) {
+			if (startImage && contains(startImage)) {
 				removeChild(startImage);
 			}
+			videoArea.play();
 		}
 		
 		public function updateSlider():void {

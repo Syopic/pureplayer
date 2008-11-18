@@ -42,13 +42,14 @@ package ua.com.syo.view {
 		//private var videoURL:String = "../assets/video.flv";
 		//private var videoURL:String = "D:/Downloads/miniflvplayer/md.flv";
 		//private var videoURL:String = "D:/Downloads/player2/player2/video.flv";
-		private var videoURL:String = "../assets/depeche.flv";
-		//private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
+		//private var videoURL:String = "http://syo.com.ua/data/test/pureplayer/depeche.flv";
+		private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
 		
         private function netStatusHandler(event:NetStatusEvent):void {
             switch (event.info.code) {
                 case "NetConnection.Connect.Success":
                     connectStream();
+                    trace("connectStream");
                     break;
                 case "NetStream.Play.StreamNotFound":
                     trace("Unable to locate video: " + videoURL);
@@ -71,10 +72,10 @@ package ua.com.syo.view {
             video.smoothing = true;
             
             stream.client = customClient;
-            video.addEventListener(Event.ENTER_FRAME, testListener);
             
-			
             stream.play(videoURL);
+            stream.pause();
+            container.addEventListener(Event.ENTER_FRAME, testListener);
             container.addChild(video);
         }
         
