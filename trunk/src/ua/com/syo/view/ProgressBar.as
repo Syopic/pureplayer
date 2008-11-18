@@ -31,6 +31,7 @@ package ua.com.syo.view {
 				root.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 				isMouseActive = true;
 				UIManager.instance.videoArea.stop();
+				UIManager.instance.controlPanel.playStopButton.gotoAndStop("play");
 			});
 			UIManager.instance.addEventListener(MouseEvent.MOUSE_UP, function():void {
 				if (isMouseActive) {
@@ -38,6 +39,7 @@ package ua.com.syo.view {
 					isMouseActive = false;
 					UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 					UIManager.instance.videoArea.play();
+					UIManager.instance.controlPanel.playStopButton.gotoAndStop("pause");
 				}
 			});
 			

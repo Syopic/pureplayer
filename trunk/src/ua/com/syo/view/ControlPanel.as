@@ -6,6 +6,7 @@ package ua.com.syo.view {
 	import flash.text.TextField;
 	
 	import ua.com.syo.data.Globals;
+	import ua.com.syo.view.events.ControlEvent;
 
 	public class ControlPanel extends Sprite {
 		
@@ -24,7 +25,7 @@ package ua.com.syo.view {
 		[Embed(source = "/../assets/library.swf" , symbol = "Scoreboard")]
 		private var Scoreboard:Class;
 		
-		private var playStopButton:MovieClip;
+		public var playStopButton:MovieClip;
 		private var embedButton:MovieClip;
 		private var fullscreenButton:MovieClip;
 		private var volumeButton:MovieClip;
@@ -34,8 +35,6 @@ package ua.com.syo.view {
 		public var scoreTextField:TextField;
 		
 		public function ControlPanel() {
-			y = Globals.stageHeight - 40;
-			
 			playStopButton = new PlayStopButton();
 			addChild(playStopButton);
 			
@@ -75,12 +74,15 @@ package ua.com.syo.view {
 		private var rightIndent:Number;
 		
 		public function arrangeControls():void {
+			y = Globals.stageHeight - 40;
 			
 			leftIndent = 5;
 			rightIndent = Globals.stageWidth - 5;
 			
 			playStopButton.x = leftIndent;
 			playStopButton.y = 5;
+			
+			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
 			
 			leftIndent += playStopButton.width + 10; 
 			
@@ -117,6 +119,19 @@ package ua.com.syo.view {
 			b.addEventListener(MouseEvent.MOUSE_OUT, function():void {MovieClip(b["tint"]).visible = false;});
 		}
 		
+		
+		
+		private function playStopButtonClickHandler(event:MouseEvent):void {
+			var e:ControlEvent = new ControlEvent(ControlEvent.CONTROL_ACTION);
+			if (playStopButton.currentLabel == "pause") {
+				e.actionType = "pause";
+				playStopButton.gotoAndStop("play");
+			} else {
+				e.actionType = "play";
+				playStopButton.gotoAndStop("pause");
+			}
+			dispatchEvent(e);
+		}
 		
 	}
 }
