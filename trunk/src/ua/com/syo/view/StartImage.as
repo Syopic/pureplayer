@@ -23,7 +23,7 @@ package ua.com.syo.view {
 			
 			bigPlayButton.addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true;});
 			bigPlayButton.addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false;});
-			bigPlayButton.addEventListener(MouseEvent.CLICK, function():void {dispatchEvent(new Event(Event.ACTIVATE));});
+			bigPlayButton.addEventListener(MouseEvent.CLICK, function():void {dispatchEvent(new MouseEvent(MouseEvent.CLICK));});
 			
 			addChild(bigPlayButton);
 		}

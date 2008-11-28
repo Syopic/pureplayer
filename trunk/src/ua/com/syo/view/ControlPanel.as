@@ -3,6 +3,7 @@ package ua.com.syo.view {
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	import flash.text.TextField;
 	
 	import ua.com.syo.data.Globals;
@@ -37,6 +38,7 @@ package ua.com.syo.view {
 		public function ControlPanel() {
 			playStopButton = new PlayStopButton();
 			addChild(playStopButton);
+			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
 			
 			embedButton = new EmbedButton();
 			addChild(embedButton);
@@ -63,11 +65,51 @@ package ua.com.syo.view {
 			initButtonListeners(playStopButton);
 			initButtonListeners(embedButton);
 			initButtonListeners(fullscreenButton);
-			initButtonListeners(volumeButton);
+			//initButtonListeners(volumeButton);
+			
+			volumeButton.gotoAndStop("collapse");
+			MovieClip(volumeButton["slider"]).visible = false;
+			MovieClip(volumeButton["bar"]).visible = false;
+			volumeButton.buttonMode = true;
+			volumeButton.addEventListener(MouseEvent.MOUSE_OVER, function():void {
+				volumeButton.gotoAndStop("expand");
+				MovieClip(volumeButton["slider"]).visible = true;
+				MovieClip(volumeButton["bar"]).visible = true;
+				//MovieClip(volumeButton["tint"]).alpha = 0.1;
+					MovieClip(volumeButton["slider"]).addEventListener(MouseEvent.MOUSE_DOWN, function():void {
+						root.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+						isMouseActive = true;
+					});
+					MovieClip(volumeButton["slider"]).addEventListener(MouseEvent.MOUSE_UP, function():void {
+						if (isMouseActive) {
+							root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+							isMouseActive = false;
+							
+							var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 30) / 50;
+							UIManager.instance.videoArea.setVolume(v);
+						}
+					});
+				});
+				
+			volumeButton.addEventListener(MouseEvent.MOUSE_OUT, function():void {
+				volumeButton.gotoAndStop("collapse");
+				MovieClip(volumeButton["slider"]).visible = false;
+				MovieClip(volumeButton["bar"]).visible = false;
+				});
 			
 			fullscreenButton.addEventListener(MouseEvent.CLICK, function():void {
 				root.stage.displayState = StageDisplayState.FULL_SCREEN;
 				});
+				
+				
+		}
+		private var isMouseActive:Boolean = false;
+		private function mouseMoveHandler(event:MouseEvent):void {
+			var pt:Point = new Point(event.stageX, event.stageY);
+			pt = globalToLocal(pt);
+				
+			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -30), 20);
+			//UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 		}
 		
 		private var leftIndent:Number;
@@ -81,8 +123,6 @@ package ua.com.syo.view {
 			
 			playStopButton.x = leftIndent;
 			playStopButton.y = 5;
-			
-			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
 			
 			leftIndent += playStopButton.width + 10; 
 			

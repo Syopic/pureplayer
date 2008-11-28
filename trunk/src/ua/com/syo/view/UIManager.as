@@ -1,6 +1,7 @@
 package ua.com.syo.view {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
@@ -22,23 +23,26 @@ package ua.com.syo.view {
 		
 		public var videoArea:VideoArea;
 		public var controlPanel:ControlPanel;
+		public var startImageContainer:Sprite;
 		public var startImage:StartImage;
 		
 		public function init():void {
 			videoArea = new VideoArea(this);
 			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - 40);
+			
+			startImageContainer = new Sprite();
+			addChild(startImageContainer);
+			
 			controlPanel = new ControlPanel();
-			
 			controlPanel.addEventListener(ControlEvent.CONTROL_ACTION, controlActionHandler);
-			
 			addChild(controlPanel);
 		}
 		
 		public function showStartImage():void {
 			startImage = new StartImage(CurrentData.instance.getStartImage());
-			addChild(startImage);
+			startImageContainer.addChild(startImage);
 			startImage.setSize(Globals.stageWidth, Globals.stageHeight - 40);
-			startImage.addEventListener(Event.ACTIVATE, bigPlayButtonClicked);
+			startImage.addEventListener(MouseEvent.CLICK, bigPlayButtonClicked);
 		}
 		
 		private function controlActionHandler(event:ControlEvent):void {
@@ -50,14 +54,14 @@ package ua.com.syo.view {
 			
 		}
 		
-		private function bigPlayButtonClicked(event:Event):void {
+		private function bigPlayButtonClicked(event:MouseEvent):void {
 			playVideo();
 			controlPanel.playStopButton.gotoAndStop("pause");
 		}
 		
 		public function playVideo():void {
-			if (startImage && contains(startImage)) {
-				removeChild(startImage);
+			if (startImage && startImageContainer.contains(startImage)) {
+				startImageContainer.removeChild(startImage);
 			}
 			videoArea.play();
 		}

@@ -27,7 +27,7 @@ package ua.com.syo.data {
 		
 		private var id:String;
 		private var imageURL:String;
-		private var videoURL:String;
+		public var videoURL:String;
 		private var thumbURL:String;
 		
 		public var startImage:Sprite;

@@ -9,7 +9,7 @@ package {
 	import ua.com.syo.data.Globals;
 	import ua.com.syo.view.UIManager;
 	
-	[SWF(width = "320" , height = "280" , frameRate = "25", backgroundColor = "#000000" )]
+	[SWF(width = "720" , height = "480" , frameRate = "25", backgroundColor = "#000000" )]
 	
 	public class PurePlayer extends Sprite {
 		

@@ -4,11 +4,12 @@ package ua.com.syo.view {
 	import flash.events.Event;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.media.SoundTransform;
 	import flash.media.Video;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
 	
-	import ua.com.syo.data.Globals;
+	import ua.com.syo.data.CurrentData;
 
 	public class VideoArea {
 		
@@ -42,8 +43,8 @@ package ua.com.syo.view {
 		//private var videoURL:String = "../assets/video.flv";
 		//private var videoURL:String = "D:/Downloads/miniflvplayer/md.flv";
 		//private var videoURL:String = "D:/Downloads/player2/player2/video.flv";
-		//private var videoURL:String = "http://syo.com.ua/data/test/pureplayer/depeche.flv";
-		private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
+		private var videoURL:String = "../assets/depeche.flv";
+		//private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
 		
         private function netStatusHandler(event:NetStatusEvent):void {
             switch (event.info.code) {
@@ -72,8 +73,7 @@ package ua.com.syo.view {
             video.smoothing = true;
             
             stream.client = customClient;
-            
-            stream.play(videoURL);
+            stream.play(CurrentData.instance.videoURL);
             stream.pause();
             container.addEventListener(Event.ENTER_FRAME, testListener);
             container.addChild(video);
@@ -124,6 +124,12 @@ package ua.com.syo.view {
 		}
 		public function play():void{
 			stream.resume();
+		}
+		
+		public function setVolume(value:Number):void {
+			var transform:SoundTransform = stream.soundTransform;
+			transform.volume = value;
+			stream.soundTransform = transform;
 		}
 
 		

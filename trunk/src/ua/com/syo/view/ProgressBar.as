@@ -33,7 +33,7 @@ package ua.com.syo.view {
 				UIManager.instance.videoArea.stop();
 				UIManager.instance.controlPanel.playStopButton.gotoAndStop("play");
 			});
-			UIManager.instance.addEventListener(MouseEvent.MOUSE_UP, function():void {
+			sliderMc.addEventListener(MouseEvent.MOUSE_UP, function():void {
 				if (isMouseActive) {
 					root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 					isMouseActive = false;
@@ -54,7 +54,7 @@ package ua.com.syo.view {
 		public function setSliderPosition(bufferTime:Number, _duration:Number):void {
 			duration = _duration;
 			if (!isMouseActive) {
-				sliderMc.y = sliderMc.height-2;
+				sliderMc.y = sliderMc.height - 1;
 				sliderMc.x = (barMc.width / duration) * bufferTime;
 			}
 		}
@@ -78,6 +78,10 @@ package ua.com.syo.view {
 		public function setWidth(value:Number):void {
 			barMc.width = value;
 			bufferMc.width = value/2;
+			
+			barMc.y = Math.round(15 - barMc.height/2);
+			bufferMc.y = Math.round(15 - bufferMc.height/2);
+			
 			initListeners();
 			setSliderPosition(100, 0)
 		}
