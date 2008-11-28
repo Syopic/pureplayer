@@ -19,13 +19,13 @@ package ua.com.syo.controller {
 		}
 		
 		public function init():void {
-			UIManager.instance.init();
 			Model.instance.init();
 			Model.instance.addEventListener(Event.INIT, modelInitHandler);
 			//UIManager.instance.videoArea.setSize();
 		}
 		
 		private function modelInitHandler(event:Event):void {
+			UIManager.instance.init();
 			UIManager.instance.showStartImage();
 		}
 	}
