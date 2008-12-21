@@ -3,7 +3,6 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
-	import flash.system.System;
 	
 	import ua.com.syo.controller.Controller;
 	import ua.com.syo.data.Globals;
@@ -23,7 +22,7 @@ package {
 				Globals.stageWidth = stage.stageWidth;
 				Globals.stageHeight = stage.stageHeight;
 				UIManager.instance.controlPanel.arrangeControls();
-				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight - 40);
+				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			});
 			
 			Controller.instance.init();
