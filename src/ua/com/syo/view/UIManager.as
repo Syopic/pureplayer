@@ -28,7 +28,7 @@ package ua.com.syo.view {
 		
 		public function init():void {
 			videoArea = new VideoArea(this);
-			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - 40);
+			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			
 			startImageContainer = new Sprite();
 			addChild(startImageContainer);
@@ -41,7 +41,7 @@ package ua.com.syo.view {
 		public function showStartImage():void {
 			startImage = new StartImage(CurrentData.instance.getStartImage());
 			startImageContainer.addChild(startImage);
-			startImage.setSize(Globals.stageWidth, Globals.stageHeight - 40);
+			startImage.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			startImage.addEventListener(MouseEvent.CLICK, bigPlayButtonClicked);
 		}
 		

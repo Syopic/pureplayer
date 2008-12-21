@@ -11,6 +11,9 @@ package ua.com.syo.view {
 
 	public class ControlPanel extends Sprite {
 		
+		[Embed(source = "/../assets/library.swf" , symbol = "ControlPanelBg")]
+		private var ControlPanelBg:Class;
+		
 		[Embed(source = "/../assets/library.swf" , symbol = "PlayStopButton")]
 		private var PlayStopButton:Class;
 		
@@ -26,6 +29,7 @@ package ua.com.syo.view {
 		[Embed(source = "/../assets/library.swf" , symbol = "Scoreboard")]
 		private var Scoreboard:Class;
 		
+		public var controlPanelBg:Sprite;
 		public var playStopButton:MovieClip;
 		private var embedButton:MovieClip;
 		private var fullscreenButton:MovieClip;
@@ -36,6 +40,10 @@ package ua.com.syo.view {
 		public var scoreTextField:TextField;
 		
 		public function ControlPanel() {
+			
+			controlPanelBg = new ControlPanelBg();
+			addChild(controlPanelBg);
+			
 			playStopButton = new PlayStopButton();
 			addChild(playStopButton);
 			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
@@ -116,39 +124,43 @@ package ua.com.syo.view {
 		private var rightIndent:Number;
 		
 		public function arrangeControls():void {
-			y = Globals.stageHeight - 40;
 			
-			leftIndent = 5;
+			controlPanelBg.width = Globals.stageWidth;
+			controlPanelBg.height = 30;
+			
+			y = Globals.stageHeight - Globals.controlBarHeight;
+			
+			leftIndent = 10;
 			rightIndent = Globals.stageWidth - 5;
 			
 			playStopButton.x = leftIndent;
-			playStopButton.y = 5;
+			//playStopButton.y = 5;
 			
 			leftIndent += playStopButton.width + 10; 
 			
 			embedButton.x = rightIndent - embedButton.width;
-			embedButton.y = 5;
+			//embedButton.y = 5;
 			
 			rightIndent = embedButton.x - 5; 
 			
 			
 			fullscreenButton.x = rightIndent - fullscreenButton.width;
-			fullscreenButton.y = 5;
+			//fullscreenButton.y = 5;
 			
 			rightIndent = fullscreenButton.x - 5; 
 			
 			volumeButton.x = rightIndent - volumeButton.width;
-			volumeButton.y = 5;
+			//volumeButton.y = 5;
 			
 			rightIndent = volumeButton.x - 5; 
 			
 			scoreboard.x = rightIndent - scoreboard.width;
-			scoreboard.y = 5;
+			//scoreboard.y = 5;
 			
 			rightIndent = scoreboard.x - 5; 
 			
 			progressBar.x = leftIndent;
-			progressBar.y = 5;
+			//progressBar.y = 5;
 			progressBar.setWidth(rightIndent - leftIndent); 
 		}
 		
