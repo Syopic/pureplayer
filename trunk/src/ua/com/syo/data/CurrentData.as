@@ -23,7 +23,7 @@ package ua.com.syo.data {
 		
 		private var playlistXML:XML;
 		
-		private var rootURL:String;
+		public var rootURL:String;
 		
 		private var id:String;
 		private var imageURL:String;
