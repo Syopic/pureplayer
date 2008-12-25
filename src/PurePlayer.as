@@ -25,6 +25,8 @@ package {
 				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			});
 			
+			Globals.setFlashVars(loaderInfo.parameters);
+			
 			Controller.instance.init();
 			addChild(UIManager.instance);
 		}
