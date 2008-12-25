@@ -73,7 +73,7 @@ package ua.com.syo.view {
             video.smoothing = true;
             
             stream.client = customClient;
-            stream.play(CurrentData.instance.videoURL);
+            stream.play(CurrentData.instance.rootURL + CurrentData.instance.videoURL);
             stream.pause();
             container.addEventListener(Event.ENTER_FRAME, testListener);
             container.addChild(video);
