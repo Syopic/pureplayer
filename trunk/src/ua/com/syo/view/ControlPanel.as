@@ -116,7 +116,7 @@ package ua.com.syo.view {
 			var pt:Point = new Point(event.stageX, event.stageY);
 			pt = globalToLocal(pt);
 				
-			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -30), 20);
+			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -55), -10);
 			//UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 		}
 		

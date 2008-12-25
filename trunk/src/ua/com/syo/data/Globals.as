@@ -6,7 +6,11 @@ package ua.com.syo.data {
 		
 		public static var controlBarHeight:int = 30;
 		
-		public static var playlistUrl:String = "playlist.xml";
+		public static var playlistUrl:String;
+		
+		public static function setFlashVars(value:Object):void {
+			playlistUrl = value["playlist"] || "playlist.xml";
+		}
 		
 	}
 }
