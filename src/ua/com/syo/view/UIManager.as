@@ -1,7 +1,7 @@
 package ua.com.syo.view {
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.text.TextField;
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
@@ -37,6 +37,8 @@ package ua.com.syo.view {
 			controlPanel.addEventListener(ControlEvent.CONTROL_ACTION, controlActionHandler);
 			addChild(controlPanel);
 		}
+		
+		public static var tf:TextField = new TextField();
 		
 		public function showStartImage():void {
 			startImage = new StartImage(CurrentData.instance.getStartImage());
