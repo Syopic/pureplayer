@@ -3,6 +3,7 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.text.TextField;
 	
 	import ua.com.syo.controller.Controller;
 	import ua.com.syo.data.Globals;
@@ -13,6 +14,9 @@ package {
 	public class PurePlayer extends Sprite {
 		
 		public function PurePlayer() {
+			
+			Globals.setFlashVars(loaderInfo.parameters);
+			
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			Globals.stageWidth = root.stage.stageWidth;
@@ -25,10 +29,14 @@ package {
 				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			});
 			
-			Globals.setFlashVars(loaderInfo.parameters);
 			
 			Controller.instance.init();
 			addChild(UIManager.instance);
+			
+			var tf:TextField = new TextField();
+			tf.textColor=0xffffff;
+			//tf.text=loaderInfo.parameters["playlist"];
+			//addChild(tf);
 		}
 	}
 }

@@ -1,4 +1,6 @@
 package ua.com.syo.data {
+	import ua.com.syo.view.UIManager;
+	
 	public class Globals {
 		
 		public static var stageWidth:int = 400;

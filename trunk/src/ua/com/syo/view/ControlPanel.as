@@ -131,7 +131,7 @@ package ua.com.syo.view {
 			y = Globals.stageHeight - Globals.controlBarHeight;
 			
 			leftIndent = 10;
-			rightIndent = Globals.stageWidth - 5;
+			rightIndent = Globals.stageWidth;
 			
 			playStopButton.x = leftIndent;
 			//playStopButton.y = 5;
@@ -141,18 +141,18 @@ package ua.com.syo.view {
 			embedButton.x = rightIndent - embedButton.width;
 			//embedButton.y = 5;
 			
-			rightIndent = embedButton.x - 5; 
+			rightIndent = embedButton.x; 
 			
 			
 			fullscreenButton.x = rightIndent - fullscreenButton.width;
 			//fullscreenButton.y = 5;
 			
-			rightIndent = fullscreenButton.x - 5; 
+			rightIndent = fullscreenButton.x; 
 			
 			volumeButton.x = rightIndent - volumeButton.width;
 			//volumeButton.y = 5;
 			
-			rightIndent = volumeButton.x - 5; 
+			rightIndent = volumeButton.x; 
 			
 			scoreboard.x = rightIndent - scoreboard.width;
 			//scoreboard.y = 5;
