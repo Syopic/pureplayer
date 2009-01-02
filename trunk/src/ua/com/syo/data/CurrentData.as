@@ -7,6 +7,8 @@ package ua.com.syo.data {
 	import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
 	
+	import ua.com.syo.model.VideoItem;
+	
 	public class CurrentData extends EventDispatcher {
 		
 		/**
@@ -51,15 +53,20 @@ package ua.com.syo.data {
 			playlistXML = xml;
 			
 			rootURL = xml.@root;
-			var firstItem:XMLList = xml.item;
+			var firstItem:XML = xml.child("item")[0];
 			
-			id = firstItem.@id;
-			imageURL = firstItem.@image;
-			videoURL = firstItem.@video;
-			thumbURL = firstItem.@thumb;
+			
+		}
+		
+		public function fillFirstItem(item:VideoItem):void {
+			id = item.id;
+			imageURL = item.startImageUrl
+			videoURL = item.videoUrl;
+			thumbURL = item.thumbUrl;
 			
 			loadStartImage();
 		}
+		
 		
 		private function loadStartImage():void {
 			loader = new Loader();
