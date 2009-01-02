@@ -1,8 +1,7 @@
 package ua.com.syo.controller {
-	import flash.events.Event;
-	
 	import ua.com.syo.model.Model;
 	import ua.com.syo.view.UIManager;
+	import flash.events.Event;
 	
 	public class Controller	{
 		

@@ -50,6 +50,7 @@ package ua.com.syo.view {
 			
 			embedButton = new EmbedButton();
 			addChild(embedButton);
+			embedButton.addEventListener(MouseEvent.CLICK,embedButtonClickHandler);
 			
 			fullscreenButton = new FullscreenButton();
 			addChild(fullscreenButton);
@@ -93,7 +94,7 @@ package ua.com.syo.view {
 							root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 							isMouseActive = false;
 							
-							var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 30) / 50;
+							var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 60) / 50;
 							UIManager.instance.videoArea.setVolume(v);
 						}
 					});
@@ -117,6 +118,8 @@ package ua.com.syo.view {
 			pt = globalToLocal(pt);
 				
 			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -55), -10);
+			var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 60) / 50;
+			UIManager.instance.videoArea.setVolume(v);
 			//UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 		}
 		
@@ -183,6 +186,10 @@ package ua.com.syo.view {
 				playStopButton.gotoAndStop("pause");
 			}
 			dispatchEvent(e);
+		}
+		
+		private function embedButtonClickHandler(event:MouseEvent):void {
+			UIManager.instance.showPlayListView();
 		}
 		
 	}

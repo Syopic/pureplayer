@@ -5,6 +5,7 @@ package ua.com.syo.view {
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
+	import ua.com.syo.model.Model;
 	import ua.com.syo.view.events.ControlEvent;
 
 	public class UIManager extends Sprite {
@@ -24,6 +25,7 @@ package ua.com.syo.view {
 		public var videoArea:VideoArea;
 		public var controlPanel:ControlPanel;
 		public var startImageContainer:Sprite;
+		public var playListView:PlaylistView;
 		public var startImage:StartImage;
 		
 		public function init():void {
@@ -36,6 +38,7 @@ package ua.com.syo.view {
 			controlPanel = new ControlPanel();
 			controlPanel.addEventListener(ControlEvent.CONTROL_ACTION, controlActionHandler);
 			addChild(controlPanel);
+			
 		}
 		
 		public static var tf:TextField = new TextField();
@@ -70,6 +73,17 @@ package ua.com.syo.view {
 		
 		public function updateSlider():void {
 			
+		}
+		
+		public function showPlayListView():void {
+			if (playListView) {
+				removeChild(playListView);
+				playListView = null;
+			} else {
+				playListView = new PlaylistView();
+				playListView.addItems(Model.instance.itemCollection);
+				addChild(playListView);
+			}
 		}
 		
 	}

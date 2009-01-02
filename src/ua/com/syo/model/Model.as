@@ -4,6 +4,7 @@ package ua.com.syo.model {
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLRequest;
+	import flash.utils.Dictionary;
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
@@ -22,6 +23,8 @@ package ua.com.syo.model {
 			return _instance;
 		}
 		
+		public var itemCollection:Dictionary = new Dictionary(true);
+		
 		//private var playlistXML:XML;
 		
 		public function init():void {
@@ -38,7 +41,22 @@ package ua.com.syo.model {
 		}
 		
 		private function playlistLoadedHandler(event:Event):void {
-			CurrentData.instance.parsePlayList(XML(event.currentTarget.data));
+			//itemCollection
+			parsePlayList(XML(event.currentTarget.data));
+		}
+		
+		private function parsePlayList(xml:XML):void {
+			CurrentData.instance.rootURL = xml.@root;
+			
+			var itemsLength:int = xml.child("item").length();
+			
+			for (var i:int = 0; i < itemsLength; i++) {
+				var item:VideoItem = new VideoItem(xml.child("item")[i]);
+				if (i == 0) {
+					CurrentData.instance.fillFirstItem(item);
+				}
+				itemCollection[item.id] = item;
+			}
 		}
 		
 		private function initComplete(event:Event):void {
