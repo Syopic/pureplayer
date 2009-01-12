@@ -2,16 +2,12 @@ package ua.com.syo.view {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
 	import ua.com.syo.data.Globals;
 	import ua.com.syo.model.VideoItem;
 
 	public class PlaylistView extends Sprite {
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "PlaylistItem")]
-		private var PlaylistItem:Class;
 		
 		private var thumbContainer:Sprite;
 		private var scrollSpeed:Number;
@@ -27,7 +23,7 @@ package ua.com.syo.view {
 		public function addItems(items:Dictionary):void {
 			for each (var i:Object in items) {
 				//(i as VideoItem)
-				var it:Sprite = new PlaylistItem();
+				var it:Sprite = new PlaylistItem(i as VideoItem);
 				var itt:DisplayObject = thumbContainer.addChild(it);
 				itt.x = incr*130;
 				itt.y = Math.round((Globals.stageHeight / 2) - 20 - itt.height / 2);
