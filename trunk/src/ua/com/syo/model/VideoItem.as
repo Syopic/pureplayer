@@ -15,6 +15,7 @@ package ua.com.syo.model {
 			startImageUrl = xml.@image;
 			videoUrl = xml.@video;
 			thumbUrl = xml.@thumb;	
+			title = xml.title;
 		}
 	}
 }
