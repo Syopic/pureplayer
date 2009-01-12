@@ -77,9 +77,15 @@ package ua.com.syo.view {
 		
 		public function showPlayListView():void {
 			if (playListView) {
+				if (startImage) {
+					startImage.visible = true;
+				}
 				removeChild(playListView);
 				playListView = null;
 			} else {
+				if (startImage) {
+					startImage.visible = false;
+				}
 				playListView = new PlaylistView();
 				playListView.addItems(Model.instance.itemCollection);
 				addChild(playListView);
