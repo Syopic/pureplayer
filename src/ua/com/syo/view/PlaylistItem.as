@@ -3,6 +3,7 @@ package ua.com.syo.view {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
 	
@@ -22,9 +23,17 @@ package ua.com.syo.view {
 		public function PlaylistItem(vi:VideoItem) {
 			listItem = new ListItem();
 			titleTF = listItem["titleTF"];
+			thumbContainer = listItem["thumbC"];
 			titleTF.text = vi.title;
 			addChild(listItem);
 			loadThumb(vi.thumbUrl);
+			
+			var tint:MovieClip = listItem["tint"];
+			tint.visible = false;
+			listItem.buttonMode = true;
+			
+			listItem.addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true;});
+			listItem.addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false;});
 		}
 		
 		private function loadThumb(url:String):void {
@@ -38,7 +47,7 @@ package ua.com.syo.view {
 			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, thumbLoadedHandler);
 			loader.content.x = 10;
 			loader.content.y = 10;
-			addChild(loader.content);
+			thumbContainer.addChild(loader.content);
 		}
 	}
 }
