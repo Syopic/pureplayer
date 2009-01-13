@@ -189,7 +189,8 @@ package ua.com.syo.view {
 		}
 		
 		private function embedButtonClickHandler(event:MouseEvent):void {
-			UIManager.instance.showPlayListView();
+			//UIManager.instance.showPlayListView();
+			UIManager.instance.showEmbedView();
 		}
 		
 	}

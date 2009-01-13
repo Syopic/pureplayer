@@ -26,6 +26,7 @@ package ua.com.syo.view {
 		public var controlPanel:ControlPanel;
 		public var startImageContainer:Sprite;
 		public var playListView:PlaylistView;
+		public var embedView:EmbedView;
 		public var startImage:StartImage;
 		
 		public function init():void {
@@ -89,6 +90,22 @@ package ua.com.syo.view {
 				playListView = new PlaylistView();
 				playListView.addItems(Model.instance.itemCollection);
 				addChild(playListView);
+			}
+		}
+		
+		public function showEmbedView():void {
+			if (embedView) {
+				if (startImage) {
+					startImage.visible = true;
+				}
+				removeChild(embedView);
+				embedView = null;
+			} else {
+				if (startImage) {
+					startImage.visible = false;
+				}
+				embedView = new EmbedView();
+				addChild(embedView);
 			}
 		}
 		
