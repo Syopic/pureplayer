@@ -18,11 +18,12 @@ package ua.com.syo.view {
 			addChild(img);
 			bigPlayButton = new BigPlayButton();
 			var tint:MovieClip = bigPlayButton["tint"];
+			bigPlayButton.alpha = 0.5;
 			tint.visible = false;
 			bigPlayButton.buttonMode = true;
 			
-			bigPlayButton.addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true;});
-			bigPlayButton.addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false;});
+			bigPlayButton.addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true; bigPlayButton.alpha = 1;});
+			bigPlayButton.addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false; bigPlayButton.alpha = 0.5;});
 			bigPlayButton.addEventListener(MouseEvent.CLICK, function():void {dispatchEvent(new MouseEvent(MouseEvent.CLICK));});
 			
 			addChild(bigPlayButton);
