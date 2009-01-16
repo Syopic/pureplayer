@@ -32,10 +32,9 @@ package ua.com.syo.view {
 		public function init():void {
 			videoArea = new VideoArea(this);
 			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
-			
+
 			startImageContainer = new Sprite();
 			addChild(startImageContainer);
-			
 			controlPanel = new ControlPanel();
 			controlPanel.addEventListener(ControlEvent.CONTROL_ACTION, controlActionHandler);
 			addChild(controlPanel);
