@@ -24,6 +24,8 @@ package ua.com.syo.view {
 			bufferMc = progressBarMc["bufferBar"];
 			sliderMc = progressBarMc["slider"];
 			sliderMc.buttonMode = true;
+			setBufferPosition(1, 1000);
+			setSliderPosition(1, 1000);
 		}
 		
 		private function initListeners():void {
@@ -39,23 +41,25 @@ package ua.com.syo.view {
 					isMouseActive = false;
 					UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 					UIManager.instance.videoArea.play();
+					UIManager.instance.startImage.visible = false;
 					UIManager.instance.controlPanel.playStopButton.gotoAndStop("pause");
 				}
 			});
 			
 			progressBarMc.addEventListener(MouseEvent.MOUSE_DOWN, function():void {
 				sliderMc.x = progressBarMc.mouseX; 
-				trace(barMc.mouseX);
 				UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 			});
 			
 		}
 		
 		public function setSliderPosition(bufferTime:Number, _duration:Number):void {
-			duration = _duration;
-			if (!isMouseActive) {
-				sliderMc.y = sliderMc.height - 1;
-				sliderMc.x = (barMc.width / duration) * bufferTime;
+			if (bufferTime <= _duration) {
+				duration = _duration;
+				if (!isMouseActive) {
+					sliderMc.y = sliderMc.height - 1;
+					sliderMc.x = (barMc.width / duration) * bufferTime;
+				}
 			}
 		}
 		
@@ -77,13 +81,12 @@ package ua.com.syo.view {
 		
 		public function setWidth(value:Number):void {
 			barMc.width = value;
-			bufferMc.width = value/2;
+			bufferMc.width = 1;
 			
 			barMc.y = Math.round(15 - barMc.height/2);
 			bufferMc.y = Math.round(15 - bufferMc.height/2);
 			
 			initListeners();
-			setSliderPosition(100, 0)
 		}
 
 	}

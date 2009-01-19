@@ -16,6 +16,11 @@ package ua.com.syo.view {
 		[Embed(source = "/../assets/library.swf" , symbol = "VideoAreaBg")]
 		private var VideoAreaBg:Class;
 		
+		[Embed(source = "/../assets/library.swf" , symbol = "BufferingIcon")]
+		private var BufferingIcon:Class;
+		
+		private var bufferingIcon:Sprite;
+		
 		private var bg:Sprite;
 		private var video:Video;
 		
@@ -24,9 +29,15 @@ package ua.com.syo.view {
 		private var connection:NetConnection;
 		private var stream:NetStream;
 		
+		private var isLoading:Boolean = false;
+		
 		public function VideoArea(_container:Sprite)	{
 			container = _container;
 			bg = new VideoAreaBg();
+			
+			bufferingIcon = new BufferingIcon();
+			bufferingIcon.visible = false;
+			
 			container.addChild(bg);
 			
 			connection = new NetConnection();
@@ -38,13 +49,15 @@ package ua.com.syo.view {
 		public function setSize(w:Number, h:Number):void {
 			bg.width = video.width = w;
 			bg.height = video.height = h;
+			bufferingIcon.x = Math.round(w / 2 - bufferingIcon.width / 2);
+			bufferingIcon.y = Math.round(h / 2 - bufferingIcon.height / 2);
 		}
 		
 		//private var videoURL:String = "../assets/video.flv";
 		//private var videoURL:String = "D:/Downloads/miniflvplayer/md.flv";
 		//private var videoURL:String = "D:/Downloads/player2/player2/video.flv";
-		private var videoURL:String = "../assets/depeche.flv";
-		//private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
+		//private var videoURL:String = "../assets/depeche.flv";
+		private var videoURL:String = "http://video.mail.ru/corp/afisha/trailers/v-567.flv";
 		
         private function netStatusHandler(event:NetStatusEvent):void {
             switch (event.info.code) {
@@ -71,19 +84,25 @@ package ua.com.syo.view {
             video = new Video();
             video.attachNetStream(stream);
             video.smoothing = true;
-            
-            stream.client = customClient;
-            stream.play(CurrentData.instance.rootURL + CurrentData.instance.videoURL);
-            stream.pause();
-            container.addEventListener(Event.ENTER_FRAME, testListener);
             container.addChild(video);
+            stream.client = customClient;
+            
+            container.addChild(bufferingIcon);
         }
         
         private function testListener(event:Event):void {
         	UIManager.instance.controlPanel.progressBar.setSliderPosition(stream.time, dur);
         	UIManager.instance.controlPanel.progressBar.setBufferPosition(stream.bytesLoaded, stream.bytesTotal);
         	UIManager.instance.controlPanel.scoreTextField.text = formatTime(stream.time) + " / " + formatTime(dur);
-        	//stream.bufferTime
+        	if (formatTime(stream.time) == formatTime(dur)) {
+        		UIManager.instance.endOfPlay();
+        	}
+        	/* if (stream.togglePause() > 0) {
+        		bufferingIcon.visible = true;
+        	} else {
+        		bufferingIcon.visible = false;
+        	}
+        	trace(stream.bufferLength); */
         }
         
         private function formatTime(value:Number):String {
@@ -123,6 +142,13 @@ package ua.com.syo.view {
 			stream.pause();
 		}
 		public function play():void{
+			if (!isLoading) {
+				stream.bufferTime = 5;
+	            stream.play(CurrentData.instance.rootURL + CurrentData.instance.videoURL);
+	            //stream.play(videoURL);
+	            container.addEventListener(Event.ENTER_FRAME, testListener);
+	            isLoading = true;
+			}
 			stream.resume();
 		}
 		

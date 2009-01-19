@@ -64,11 +64,19 @@ package ua.com.syo.view {
 			controlPanel.playStopButton.gotoAndStop("pause");
 		}
 		
+		public function endOfPlay():void {
+			videoArea.stop();
+			videoArea.seekStream(0);
+			controlPanel.playStopButton.gotoAndStop("play");
+			showPlayListView();
+		}
+		
 		public function playVideo():void {
 			if (startImage && startImageContainer.contains(startImage)) {
 				startImageContainer.removeChild(startImage);
 			}
 			videoArea.play();
+			hidePlayListVideo();
 		}
 		
 		public function updateSlider():void {
@@ -89,6 +97,16 @@ package ua.com.syo.view {
 				playListView = new PlaylistView();
 				playListView.addItems(Model.instance.itemCollection);
 				addChild(playListView);
+			}
+		}
+		
+		public function hidePlayListVideo():void {
+			if (playListView) {
+				if (startImage) {
+					startImage.visible = true;
+				}
+				removeChild(playListView);
+				playListView = null;
 			}
 		}
 		
