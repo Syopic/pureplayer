@@ -29,6 +29,10 @@ package ua.com.syo.view {
 			linkBut = panelContainer["linkBut"];
 			codeBut = panelContainer["codeBut"];
 			
+			linkTF.text = "http://new.ppc.net.ua/ru/video/item/2/";
+			codeTF.text = '<object height="250" width="390"><param name="movie" value="http://new.ppc.net.ua/images/pureplayer.swf" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="FlashVars" value="playlist=http://new.ppc.net.ua/uploaded/video/playlist.xml" /> <embed src="http://new.ppc.net.ua/images/pureplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" flashvars="playlist=http://new.ppc.net.ua/uploaded/video/playlist.xml" height="250" width="390"></embed></object>';
+
+			
 			addChild(panelContainer);
 			x =  Math.round((Globals.stageWidth / 2) - panelContainer.width / 2);
 			y =  Math.round((Globals.stageHeight / 2) - panelContainer.height / 2) - 20;
