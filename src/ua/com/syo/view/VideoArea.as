@@ -94,7 +94,8 @@ package ua.com.syo.view {
         	UIManager.instance.controlPanel.progressBar.setSliderPosition(stream.time, dur);
         	UIManager.instance.controlPanel.progressBar.setBufferPosition(stream.bytesLoaded, stream.bytesTotal);
         	UIManager.instance.controlPanel.scoreTextField.text = formatTime(stream.time) + " / " + formatTime(dur);
-        	if (formatTime(stream.time) == formatTime(dur)) {
+        	if (formatTime(stream.time) == formatTime(dur)
+        		&& !UIManager.instance.controlPanel.progressBar.isMouseActive) {
         		UIManager.instance.endOfPlay();
         	}
         	/* if (stream.togglePause() > 0) {
