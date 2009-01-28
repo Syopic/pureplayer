@@ -31,6 +31,7 @@ package ua.com.syo.data {
 		private var imageURL:String;
 		public var videoURL:String;
 		private var thumbURL:String;
+		public var linkURL:String;
 		
 		public var startImage:Sprite;
 		
@@ -63,6 +64,7 @@ package ua.com.syo.data {
 			imageURL = item.startImageUrl
 			videoURL = item.videoUrl;
 			thumbURL = item.thumbUrl;
+			linkURL = item.url;
 			
 			loadStartImage();
 		}

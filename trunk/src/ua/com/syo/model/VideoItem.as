@@ -8,6 +8,7 @@ package ua.com.syo.model {
 		public var title:String;
 		public var description:String;
 		public var date:String;
+		public var url:String;
 		
 		
 		public function VideoItem(xml:XML) {
@@ -16,6 +17,7 @@ package ua.com.syo.model {
 			videoUrl = xml.@video;
 			thumbUrl = xml.@thumb;	
 			title = xml.title;
+			url = xml.@url;
 		}
 	}
 }

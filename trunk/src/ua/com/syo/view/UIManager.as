@@ -47,7 +47,6 @@ package ua.com.syo.view {
 			startImage = new StartImage(CurrentData.instance.getStartImage());
 			startImageContainer.addChild(startImage);
 			startImage.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
-			startImage.addEventListener(MouseEvent.CLICK, bigPlayButtonClicked);
 		}
 		
 		private function controlActionHandler(event:ControlEvent):void {
@@ -59,7 +58,7 @@ package ua.com.syo.view {
 			
 		}
 		
-		private function bigPlayButtonClicked(event:MouseEvent):void {
+		public function bigPlayButtonClicked():void {
 			playVideo();
 			controlPanel.playStopButton.gotoAndStop("pause");
 		}

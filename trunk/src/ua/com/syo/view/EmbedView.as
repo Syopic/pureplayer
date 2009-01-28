@@ -5,6 +5,7 @@ package ua.com.syo.view {
 	import flash.system.System;
 	import flash.text.TextField;
 	
+	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
 
 	public class EmbedView extends Sprite {
@@ -29,8 +30,8 @@ package ua.com.syo.view {
 			linkBut = panelContainer["linkBut"];
 			codeBut = panelContainer["codeBut"];
 			
-			linkTF.text = "http://new.ppc.net.ua/ru/video/item/2/";
-			codeTF.text = '<object height="250" width="390"><param name="movie" value="http://new.ppc.net.ua/images/pureplayer.swf" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="FlashVars" value="playlist=http://new.ppc.net.ua/uploaded/video/playlist.xml" /> <embed src="http://new.ppc.net.ua/images/pureplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" flashvars="playlist=http://new.ppc.net.ua/uploaded/video/playlist.xml" height="250" width="390"></embed></object>';
+			linkTF.text = CurrentData.instance.linkURL;
+			codeTF.text = '<object height="330" width="463"><param name="movie" value="http://new.ppc.net.ua/images/pureplayer.swf" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="opaque"/><param name="FlashVars" value="playlist=playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" /><embed src="http://new.ppc.net.ua/images/pureplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" flashvars="playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" height="331" width="463" wmode="opaque"></embed></object>';
 
 			
 			addChild(panelContainer);
