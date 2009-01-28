@@ -50,11 +50,9 @@ package ua.com.syo.model {
 			
 			var itemsLength:int = xml.child("item").length();
 			
-			for (var i:int = 0; i < itemsLength; i++) {
+			CurrentData.instance.fillFirstItem( new VideoItem(xml.child("item")[0]));
+			for (var i:int = 1; i < itemsLength; i++) {
 				var item:VideoItem = new VideoItem(xml.child("item")[i]);
-				if (i == 0) {
-					CurrentData.instance.fillFirstItem(item);
-				}
 				itemCollection[item.id] = item;
 			}
 		}

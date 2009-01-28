@@ -1,4 +1,5 @@
 package ua.com.syo.view {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -29,14 +30,17 @@ package ua.com.syo.view {
 		private var connection:NetConnection;
 		private var stream:NetStream;
 		
+		private var oldProgress:Number;
+		
 		private var isLoading:Boolean = false;
+		private var isPlayed:Boolean = false;
 		
 		public function VideoArea(_container:Sprite)	{
 			container = _container;
 			bg = new VideoAreaBg();
 			
 			bufferingIcon = new BufferingIcon();
-			bufferingIcon.visible = false;
+			//bufferingIcon.visible = false;
 			
 			container.addChild(bg);
 			
@@ -98,12 +102,15 @@ package ua.com.syo.view {
         		&& !UIManager.instance.controlPanel.progressBar.isMouseActive) {
         		UIManager.instance.endOfPlay();
         	}
-        	/* if (stream.togglePause() > 0) {
-        		bufferingIcon.visible = true;
+        	if (stream.time == oldProgress && isPlayed) {
+        		if (!bufferingIcon.visible) {
+	        		bufferingIcon.visible = true;
+	        		(bufferingIcon as MovieClip).gotoAndPlay(1);
+        		}
         	} else {
         		bufferingIcon.visible = false;
         	}
-        	trace(stream.bufferLength); */
+        	oldProgress = stream.time;
         }
         
         private function formatTime(value:Number):String {
@@ -141,6 +148,7 @@ package ua.com.syo.view {
 		
 		public function stop():void{
 			stream.pause();
+			isPlayed = false;
 		}
 		public function play():void{
 			if (!isLoading) {
@@ -151,6 +159,7 @@ package ua.com.syo.view {
 	            isLoading = true;
 			}
 			stream.resume();
+			isPlayed = true;
 		}
 		
 		public function setVolume(value:Number):void {

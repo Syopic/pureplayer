@@ -2,7 +2,6 @@ package ua.com.syo.view {
 	import flash.display.Bitmap;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 
 	public class StartImage extends Sprite {
@@ -20,11 +19,11 @@ package ua.com.syo.view {
 			var tint:MovieClip = bigPlayButton["tint"];
 			bigPlayButton.alpha = 0.5;
 			tint.visible = false;
-			bigPlayButton.buttonMode = true;
+			buttonMode = true;
 			
-			bigPlayButton.addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true; bigPlayButton.alpha = 1;});
-			bigPlayButton.addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false; bigPlayButton.alpha = 0.5;});
-			bigPlayButton.addEventListener(MouseEvent.CLICK, function():void {dispatchEvent(new MouseEvent(MouseEvent.CLICK));});
+			addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true; bigPlayButton.alpha = 1;});
+			addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false; bigPlayButton.alpha = 0.5;});
+			addEventListener(MouseEvent.CLICK, function():void {UIManager.instance.bigPlayButtonClicked()});
 			
 			addChild(bigPlayButton);
 		}
