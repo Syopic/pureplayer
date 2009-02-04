@@ -107,7 +107,11 @@ package ua.com.syo.view {
 				});
 			
 			fullscreenButton.addEventListener(MouseEvent.CLICK, function():void {
-				root.stage.displayState = StageDisplayState.FULL_SCREEN;
+				if (root.stage.displayState == StageDisplayState.FULL_SCREEN) {
+					root.stage.displayState = StageDisplayState.NORMAL;
+				} else {
+					root.stage.displayState = StageDisplayState.FULL_SCREEN;
+				}
 				});
 				
 				

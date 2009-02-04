@@ -54,7 +54,7 @@ package ua.com.syo.view {
 		}
 		
 		private function mouseClickHandler(event:MouseEvent):void {
-			navigateToURL(new URLRequest(videoItem.url));
+			navigateToURL(new URLRequest(videoItem.url), "_self");
 		}
 	}
 }

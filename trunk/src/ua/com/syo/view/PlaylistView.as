@@ -2,6 +2,8 @@ package ua.com.syo.view {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
 	import ua.com.syo.data.Globals;
@@ -18,6 +20,7 @@ package ua.com.syo.view {
 			thumbContainer = new Sprite();
 			addChild(thumbContainer);
 			addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			showSeeAlsoLabel();
 		}
 		
 		public function addItems(items:Dictionary):void {
@@ -25,14 +28,14 @@ package ua.com.syo.view {
 				//(i as VideoItem)
 				var it:Sprite = new PlaylistItem(i as VideoItem);
 				var itt:DisplayObject = thumbContainer.addChild(it);
-				itt.x = incr*130;
+				itt.x = incr*110;
 				itt.y = Math.round((Globals.stageHeight / 2) - 20 - itt.height / 2);
 				incr++;
 			}
 			
-			if (incr*130 < Globals.stageWidth) {
+			if (incr*100 < Globals.stageWidth) {
 				isScroll = false;
-				thumbContainer.x = Globals.stageWidth / 2 - incr*130 / 2 + 10;
+				thumbContainer.x = Globals.stageWidth / 2 - incr*120 / 2 + 10;
 			}
 		}
 		
@@ -46,10 +49,27 @@ package ua.com.syo.view {
 				if (thumbContainer.x > 10) {
 					thumbContainer.x = 10;
 				}
-				if (thumbContainer.x < -(incr*130 - Globals.stageWidth)) {
-					thumbContainer.x = -(incr*130 - Globals.stageWidth);
+				if (thumbContainer.x < -(incr*110 - Globals.stageWidth)) {
+					thumbContainer.x = -(incr*110 - Globals.stageWidth);
 				}
 			}
+		}
+		
+		private function showSeeAlsoLabel():void {
+			var seeAlsoTF:TextField = new TextField()
+			seeAlsoTF.selectable = false;
+			seeAlsoTF.width = 200;
+			var format:TextFormat = new TextFormat();
+			format.size = 14;
+			format.font = "Arial";
+			format.color = "0xFFFFFF";
+			format.bold = true;
+			seeAlsoTF.defaultTextFormat = format;
+			seeAlsoTF.text = "Смотрите Также: ";
+			seeAlsoTF.x = 20;
+			seeAlsoTF.y = 20;
+
+			addChild(seeAlsoTF);
 		}
 	}
 }
