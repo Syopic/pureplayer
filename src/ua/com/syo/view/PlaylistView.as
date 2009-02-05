@@ -35,7 +35,7 @@ package ua.com.syo.view {
 			
 			if (incr*100 < Globals.stageWidth) {
 				isScroll = false;
-				thumbContainer.x = Globals.stageWidth / 2 - incr*120 / 2 + 10;
+				thumbContainer.x = Globals.stageWidth / 2 - incr*110 / 2 + 10;
 			}
 		}
 		
