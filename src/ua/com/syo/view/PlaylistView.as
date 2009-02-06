@@ -3,6 +3,7 @@ package ua.com.syo.view {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
@@ -58,16 +59,18 @@ package ua.com.syo.view {
 		private function showSeeAlsoLabel():void {
 			var seeAlsoTF:TextField = new TextField()
 			seeAlsoTF.selectable = false;
-			seeAlsoTF.width = 200;
+			seeAlsoTF.autoSize = TextFieldAutoSize.CENTER;
+			seeAlsoTF.width = Globals.stageWidth;
 			var format:TextFormat = new TextFormat();
 			format.size = 14;
 			format.font = "Arial";
 			format.color = "0xFFFFFF";
+			format.align = "center";
 			format.bold = true;
 			seeAlsoTF.defaultTextFormat = format;
+			seeAlsoTF.x = Math.round(Globals.stageWidth / 2);
 			seeAlsoTF.text = "Смотрите Также: ";
-			seeAlsoTF.x = 20;
-			seeAlsoTF.y = 20;
+			seeAlsoTF.y = Math.round((Globals.stageHeight / 2) - 110);
 
 			addChild(seeAlsoTF);
 		}

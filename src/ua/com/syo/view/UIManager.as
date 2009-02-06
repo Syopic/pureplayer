@@ -111,15 +111,15 @@ package ua.com.syo.view {
 		
 		public function showEmbedView():void {
 			if (embedView) {
-				if (startImage) {
+				/* if (startImage) {
 					startImage.visible = true;
-				}
+				} */
 				removeChild(embedView);
 				embedView = null;
 			} else {
-				if (startImage) {
+				/* if (startImage) {
 					startImage.visible = false;
-				}
+				} */
 				embedView = new EmbedView();
 				addChild(embedView);
 			}
