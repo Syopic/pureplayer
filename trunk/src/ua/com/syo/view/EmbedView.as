@@ -31,7 +31,7 @@ package ua.com.syo.view {
 			codeBut = panelContainer["codeBut"];
 			
 			linkTF.text = CurrentData.instance.linkURL;
-			codeTF.text = '<object height="' + Globals.stageHeight + '" width="' + Globals.stageWidth + '"><param name="movie" value="http://new.ppc.net.ua/images/pureplayer.swf" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="opaque"/><param name="FlashVars" value="playlist=playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" /><embed src="http://new.ppc.net.ua/images/pureplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" flashvars="playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" height="' + Globals.stageHeight + '" width="' + Globals.stageWidth + '" wmode="opaque"></embed></object>';
+			codeTF.text = '<object height="' + Globals.stageHeight + '" width="' + Globals.stageWidth + '"><param name="movie" value="http://new.ppc.net.ua/images/pureplayer.swf" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="opaque"/><param name="FlashVars" value="playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" /><embed src="http://new.ppc.net.ua/images/pureplayer.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" flashvars="playlist=http://new.ppc.net.ua/' + Globals.playlistUrl + '" height="' + Globals.stageHeight + '" width="' + Globals.stageWidth + '" wmode="opaque"></embed></object>';
 
 			
 			addChild(panelContainer);
