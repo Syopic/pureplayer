@@ -48,6 +48,7 @@ package ua.com.syo.view {
             connection.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
             connection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
             connection.connect(null);
+            //stream.play(CurrentData.instance.rootURL + CurrentData.instance.videoURL);
 		}
 		
 		public function setSize(w:Number, h:Number):void {
