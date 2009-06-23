@@ -67,7 +67,8 @@ package ua.com.syo.view {
 			videoArea.stop();
 			videoArea.seekStream(0);
 			controlPanel.playStopButton.gotoAndStop("play");
-			showPlayListView();
+			showStartImage();
+			//showPlayListView();
 		}
 		
 		public function playVideo():void {
