@@ -5,10 +5,9 @@ package ua.com.syo.view {
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import ua.com.syo.data.LibraryData;
+	
 	public class ProgressBar extends Sprite {
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "PlayedBar")]
-		private var PlayedBar:Class;
 		
 		private var progressBarMc:MovieClip;
 		private var barMc:MovieClip;
@@ -19,7 +18,7 @@ package ua.com.syo.view {
 		
 		
 		public function ProgressBar() {
-			progressBarMc = new PlayedBar();
+			progressBarMc = new LibraryData.PlayedBar();
 			addChild(progressBarMc);
 			barMc = progressBarMc["bar"];
 			bufferMc = progressBarMc["bufferBar"];

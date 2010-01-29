@@ -3,19 +3,18 @@ package ua.com.syo.view {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	
+	import ua.com.syo.data.LibraryData;
 
 	public class StartImage extends Sprite {
 		
-		[Embed(source = "/../assets/library.swf" , symbol = "BigPlayButton")]
-		private var BigPlayButton:Class;
-
 		private var img:Bitmap;
 		private var bigPlayButton:MovieClip;
 
 		public function StartImage(_img:Bitmap) {
 			img = _img;
 			addChild(img);
-			bigPlayButton = new BigPlayButton();
+			bigPlayButton = new LibraryData.BigPlayButton();
 			var tint:MovieClip = bigPlayButton["tint"];
 			bigPlayButton.alpha = 0;
 			tint.visible = false;

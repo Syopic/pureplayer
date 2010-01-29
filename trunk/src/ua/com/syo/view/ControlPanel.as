@@ -7,31 +7,14 @@ package ua.com.syo.view {
 	import flash.text.TextField;
 	
 	import ua.com.syo.data.Globals;
+	import ua.com.syo.data.LibraryData;
 	import ua.com.syo.view.events.ControlEvent;
 
 	public class ControlPanel extends Sprite {
 		
-		[Embed(source = "/../assets/library.swf" , symbol = "ControlPanelBg")]
-		private var ControlPanelBg:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "PlayStopButton")]
-		private var PlayStopButton:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "EmbedButton")]
-		private var EmbedButton:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "FullscreenButton")]
-		private var FullscreenButton:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "VolumeButton")]
-		private var VolumeButton:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "Scoreboard")]
-		private var Scoreboard:Class;
-		
 		public var controlPanelBg:Sprite;
 		public var playStopButton:MovieClip;
-		private var embedButton:MovieClip;
+		//private var embedButton:MovieClip;
 		private var fullscreenButton:MovieClip;
 		private var volumeButton:MovieClip;
 		private var scoreboard:MovieClip;
@@ -41,24 +24,24 @@ package ua.com.syo.view {
 		
 		public function ControlPanel() {
 			
-			controlPanelBg = new ControlPanelBg();
+			controlPanelBg = new LibraryData.ControlPanelBg();
 			addChild(controlPanelBg);
 			
-			playStopButton = new PlayStopButton();
+			playStopButton = new LibraryData.PlayStopButton();
 			addChild(playStopButton);
 			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
 			
-			embedButton = new EmbedButton();
+			/* embedButton = new LibraryData.EmbedButton();
 			addChild(embedButton);
-			embedButton.addEventListener(MouseEvent.CLICK,embedButtonClickHandler);
+			embedButton.addEventListener(MouseEvent.CLICK,embedButtonClickHandler); */
 			
-			fullscreenButton = new FullscreenButton();
+			fullscreenButton = new LibraryData.FullscreenButton();
 			addChild(fullscreenButton);
 			
-			volumeButton = new VolumeButton();
+			volumeButton = new LibraryData.VolumeButton();
 			addChild(volumeButton);
 			
-			scoreboard = new Scoreboard();
+			scoreboard = new LibraryData.Scoreboard();
 			addChild(scoreboard);
 			scoreTextField = scoreboard["scoreTextField"];
 			
@@ -72,7 +55,7 @@ package ua.com.syo.view {
 		private function enableControls():void {
 			playStopButton.gotoAndStop("play");
 			initButtonListeners(playStopButton);
-			initButtonListeners(embedButton);
+			//initButtonListeners(embedButton);
 			initButtonListeners(fullscreenButton);
 			//initButtonListeners(volumeButton);
 			
@@ -145,10 +128,11 @@ package ua.com.syo.view {
 			
 			leftIndent += playStopButton.width + 10; 
 			
-			embedButton.x = rightIndent - embedButton.width;
+			
+			//embedButton.x = rightIndent - embedButton.width;
 			//embedButton.y = 5;
 			
-			rightIndent = embedButton.x; 
+			//rightIndent = embedButton.x; 
 			
 			
 			fullscreenButton.x = rightIndent - fullscreenButton.width;
@@ -173,9 +157,11 @@ package ua.com.syo.view {
 		
 		private function initButtonListeners(b:MovieClip):void {
 			b.buttonMode = true;
-			MovieClip(b["tint"]).visible = false;
-			b.addEventListener(MouseEvent.MOUSE_OVER, function():void {MovieClip(b["tint"]).visible = true;});
-			b.addEventListener(MouseEvent.MOUSE_OUT, function():void {MovieClip(b["tint"]).visible = false;});
+			if (MovieClip(b["tint"])) {
+				MovieClip(b["tint"]).visible = false;
+				b.addEventListener(MouseEvent.MOUSE_OVER, function():void {MovieClip(b["tint"]).visible = true;});
+				b.addEventListener(MouseEvent.MOUSE_OUT, function():void {MovieClip(b["tint"]).visible = false;});
+			}
 		}
 		
 		
@@ -191,6 +177,7 @@ package ua.com.syo.view {
 			}
 			dispatchEvent(e);
 		}
+		
 		
 		private function embedButtonClickHandler(event:MouseEvent):void {
 			//UIManager.instance.showPlayListView();
