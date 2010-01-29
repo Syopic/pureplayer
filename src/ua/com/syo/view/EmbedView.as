@@ -7,11 +7,9 @@ package ua.com.syo.view {
 	
 	import ua.com.syo.data.CurrentData;
 	import ua.com.syo.data.Globals;
+	import ua.com.syo.data.LibraryData;
 
 	public class EmbedView extends Sprite {
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "EmbedPanel")]
-		private var EmbedPanel:Class;
 		
 		private var panelContainer:Sprite;
 		
@@ -22,7 +20,7 @@ package ua.com.syo.view {
 		private var codeBut:SimpleButton;
 		
 		public function EmbedView() {
-			panelContainer = new EmbedPanel();
+			panelContainer = new LibraryData.EmbedPanel();
 			
 			linkTF = panelContainer["linkTF"];
 			codeTF = panelContainer["codeTF"];

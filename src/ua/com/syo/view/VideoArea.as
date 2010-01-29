@@ -11,14 +11,9 @@ package ua.com.syo.view {
 	import flash.net.NetStream;
 	
 	import ua.com.syo.data.CurrentData;
+	import ua.com.syo.data.LibraryData;
 
 	public class VideoArea {
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "VideoAreaBg")]
-		private var VideoAreaBg:Class;
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "BufferingIcon")]
-		private var BufferingIcon:Class;
 		
 		private var bufferingIcon:Sprite;
 		
@@ -37,9 +32,9 @@ package ua.com.syo.view {
 		
 		public function VideoArea(_container:Sprite)	{
 			container = _container;
-			bg = new VideoAreaBg();
+			bg = new LibraryData.VideoAreaBg();
 			
-			bufferingIcon = new BufferingIcon();
+			bufferingIcon = new LibraryData.BufferingIcon();
 			//bufferingIcon.visible = false;
 			
 			container.addChild(bg);

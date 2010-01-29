@@ -9,12 +9,10 @@ package ua.com.syo.view {
 	import flash.text.TextField;
 	
 	import ua.com.syo.data.CurrentData;
+	import ua.com.syo.data.LibraryData;
 	import ua.com.syo.model.VideoItem;
 	
 	public class PlaylistItem extends Sprite {
-		
-		[Embed(source = "/../assets/library.swf" , symbol = "PlaylistItem")]
-		private var ListItem:Class;
 		
 		private var listItem:Sprite;
 		private var thumbContainer:MovieClip;
@@ -24,7 +22,7 @@ package ua.com.syo.view {
 		
 		public function PlaylistItem(vi:VideoItem) {
 			videoItem = vi;
-			listItem = new ListItem();
+			listItem = new LibraryData.ListItem();
 			titleTF = listItem["titleTF"];
 			thumbContainer = listItem["thumbC"];
 			titleTF.text = vi.title;
