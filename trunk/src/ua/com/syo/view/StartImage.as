@@ -16,12 +16,12 @@ package ua.com.syo.view {
 			addChild(img);
 			bigPlayButton = new LibraryData.BigPlayButton();
 			var tint:MovieClip = bigPlayButton["tint"];
-			bigPlayButton.alpha = 0;
+			bigPlayButton.alpha = 0.3;
 			tint.visible = false;
 			buttonMode = true;
 			
-			addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true; bigPlayButton.alpha = 0;});
-			addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false; bigPlayButton.alpha = 0;});
+			addEventListener(MouseEvent.MOUSE_OVER, function():void {tint.visible = true; bigPlayButton.alpha = 0.7;});
+			addEventListener(MouseEvent.MOUSE_OUT, function():void {tint.visible = false; bigPlayButton.alpha = 0.3;});
 			addEventListener(MouseEvent.CLICK, function():void {UIManager.instance.bigPlayButtonClicked()});
 			
 			addChild(bigPlayButton);

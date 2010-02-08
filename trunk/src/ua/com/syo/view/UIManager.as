@@ -1,6 +1,5 @@
 package ua.com.syo.view {
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	
 	import ua.com.syo.data.CurrentData;
@@ -32,7 +31,7 @@ package ua.com.syo.view {
 		
 		public function init():void {
 			videoArea = new VideoArea(this);
-			videoArea.setSize(Globals.stageWidth, Globals.stageHeight);
+			videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 
 			startImageContainer = new Sprite();
 			addChild(startImageContainer);
@@ -47,7 +46,7 @@ package ua.com.syo.view {
 		public function showStartImage():void {
 			startImage = new StartImage(CurrentData.instance.getStartImage());
 			startImageContainer.addChild(startImage);
-			startImage.setSize(Globals.stageWidth, Globals.stageHeight);
+			startImage.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 		}
 		
 		private function controlActionHandler(event:ControlEvent):void {

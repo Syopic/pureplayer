@@ -14,7 +14,7 @@ package ua.com.syo.view {
 		
 		public var controlPanelBg:Sprite;
 		public var playStopButton:MovieClip;
-		//private var embedButton:MovieClip;
+		private var embedButton:MovieClip;
 		private var fullscreenButton:MovieClip;
 		private var volumeButton:MovieClip;
 		private var scoreboard:MovieClip;
@@ -31,9 +31,9 @@ package ua.com.syo.view {
 			addChild(playStopButton);
 			playStopButton.addEventListener(MouseEvent.CLICK, playStopButtonClickHandler);
 			
-			/* embedButton = new LibraryData.EmbedButton();
+			embedButton = new LibraryData.EmbedButton();
 			addChild(embedButton);
-			embedButton.addEventListener(MouseEvent.CLICK,embedButtonClickHandler); */
+			embedButton.addEventListener(MouseEvent.CLICK,embedButtonClickHandler);
 			
 			fullscreenButton = new LibraryData.FullscreenButton();
 			addChild(fullscreenButton);
@@ -55,9 +55,9 @@ package ua.com.syo.view {
 		private function enableControls():void {
 			playStopButton.gotoAndStop("play");
 			initButtonListeners(playStopButton);
-			//initButtonListeners(embedButton);
+			initButtonListeners(embedButton);
 			initButtonListeners(fullscreenButton);
-			//initButtonListeners(volumeButton);
+			initButtonListeners(volumeButton);
 			
 			volumeButton.gotoAndStop("collapse");
 			MovieClip(volumeButton["slider"]).visible = false;
@@ -77,7 +77,7 @@ package ua.com.syo.view {
 							root.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 							isMouseActive = false;
 							
-							var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 60) / 50;
+							var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 50) / 50;
 							UIManager.instance.videoArea.setVolume(v);
 						}
 					});
@@ -101,11 +101,11 @@ package ua.com.syo.view {
 		}
 		private var isMouseActive:Boolean = false;
 		private function mouseMoveHandler(event:MouseEvent):void {
-			var pt:Point = new Point(event.stageX, event.stageY);
+			var pt:Point = new Point(event.stageX, event.stageY - 10);
 			pt = globalToLocal(pt);
 				
-			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -55), -10);
-			var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 60) / 50;
+			MovieClip(volumeButton["slider"]).y = Math.min(Math.max(pt.y, -50), 0);
+			var v:Number = 1 - (MovieClip(volumeButton["slider"]).y + 50) / 50;
 			UIManager.instance.videoArea.setVolume(v);
 			//UIManager.instance.videoArea.seekStream(duration/barMc.width * sliderMc.x);
 		}
@@ -116,42 +116,42 @@ package ua.com.syo.view {
 		public function arrangeControls():void {
 			
 			controlPanelBg.width = Globals.stageWidth;
-			controlPanelBg.height = 30;
+			controlPanelBg.height = Globals.controlBarHeight;
 			
 			y = Globals.stageHeight - Globals.controlBarHeight;
 			
-			leftIndent = 10;
+			leftIndent = 15;
 			rightIndent = Globals.stageWidth;
 			
 			playStopButton.x = leftIndent;
-			//playStopButton.y = 5;
+			playStopButton.y = 10;
 			
-			leftIndent += playStopButton.width + 10; 
-			
-			
-			//embedButton.x = rightIndent - embedButton.width;
-			//embedButton.y = 5;
-			
-			//rightIndent = embedButton.x; 
+			leftIndent += playStopButton.width + 15; 
 			
 			
-			fullscreenButton.x = rightIndent - fullscreenButton.width;
-			//fullscreenButton.y = 5;
+			embedButton.x = rightIndent - embedButton.width - 10;
+			embedButton.y = 15;
+			
+			rightIndent = embedButton.x; 
+			
+			
+			fullscreenButton.x = rightIndent - fullscreenButton.width - 10;
+			fullscreenButton.y = 12;
 			
 			rightIndent = fullscreenButton.x; 
 			
-			volumeButton.x = rightIndent - volumeButton.width;
-			//volumeButton.y = 5;
+			volumeButton.x = rightIndent - volumeButton.width - 11;
+			volumeButton.y = 11;
 			
 			rightIndent = volumeButton.x; 
 			
-			scoreboard.x = rightIndent - scoreboard.width;
-			//scoreboard.y = 5;
+			scoreboard.x = rightIndent - scoreboard.width - 17;
+			scoreboard.y = 10;
 			
-			rightIndent = scoreboard.x - 5; 
+			rightIndent = scoreboard.x - 10; 
 			
 			progressBar.x = leftIndent;
-			//progressBar.y = 5;
+			progressBar.y = 10;
 			progressBar.setWidth(rightIndent - leftIndent); 
 		}
 		
