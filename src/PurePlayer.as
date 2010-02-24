@@ -26,7 +26,8 @@ package {
 				Globals.stageWidth = stage.stageWidth;
 				Globals.stageHeight = stage.stageHeight;
 				UIManager.instance.controlPanel.arrangeControls();
-				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight);
+				UIManager.instance.videoArea.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
+				UIManager.instance.startImage.setSize(Globals.stageWidth, Globals.stageHeight - Globals.controlBarHeight);
 			});
 			
 			
