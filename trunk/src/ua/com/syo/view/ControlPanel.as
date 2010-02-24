@@ -67,6 +67,9 @@ package ua.com.syo.view {
 				volumeButton.gotoAndStop("expand");
 				MovieClip(volumeButton["slider"]).visible = true;
 				MovieClip(volumeButton["bar"]).visible = true;
+				
+				MovieClip(volumeButton["bar"]).addEventListener(MouseEvent.MOUSE_DOWN, mouseMoveHandler);
+				
 				//MovieClip(volumeButton["tint"]).alpha = 0.1;
 					MovieClip(volumeButton["slider"]).addEventListener(MouseEvent.MOUSE_DOWN, function():void {
 						root.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
@@ -124,34 +127,34 @@ package ua.com.syo.view {
 			rightIndent = Globals.stageWidth;
 			
 			playStopButton.x = leftIndent;
-			playStopButton.y = 10;
+			playStopButton.y = 7;
 			
 			leftIndent += playStopButton.width + 15; 
 			
 			
 			embedButton.x = rightIndent - embedButton.width - 10;
-			embedButton.y = 15;
+			embedButton.y = 12;
 			
 			rightIndent = embedButton.x; 
 			
 			
 			fullscreenButton.x = rightIndent - fullscreenButton.width - 10;
-			fullscreenButton.y = 12;
+			fullscreenButton.y = 9;
 			
 			rightIndent = fullscreenButton.x; 
 			
 			volumeButton.x = rightIndent - volumeButton.width - 11;
-			volumeButton.y = 11;
+			volumeButton.y = 8;
 			
 			rightIndent = volumeButton.x; 
 			
 			scoreboard.x = rightIndent - scoreboard.width - 17;
-			scoreboard.y = 10;
+			scoreboard.y = 7;
 			
 			rightIndent = scoreboard.x - 10; 
 			
 			progressBar.x = leftIndent;
-			progressBar.y = 10;
+			progressBar.y = 7;
 			progressBar.setWidth(rightIndent - leftIndent); 
 		}
 		

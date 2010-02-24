@@ -23,6 +23,7 @@ package ua.com.syo.view {
 			barMc = progressBarMc["bar"];
 			bufferMc = progressBarMc["bufferBar"];
 			sliderMc = progressBarMc["slider"];
+			barMc.buttonMode = true;
 			sliderMc.buttonMode = true;
 			setBufferPosition(1, 1000);
 			setSliderPosition(1, 1000);
